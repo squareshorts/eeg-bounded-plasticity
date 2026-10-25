@@ -1,0 +1,653 @@
+{
+  "audit": "Independent 118-participant cohort-stratified combined-analysis recheck",
+  "status": "REPRODUCED",
+  "preferred_factual_name": "cohort-stratified combined analysis",
+  "scope": {
+    "physionet": "R06 adaptation -> R10/R14 future evaluation; 109 participants",
+    "bci_iv_2a": "AxxT adaptation/calibration -> AxxE evaluation; 9 participants",
+    "combined_n": 118,
+    "raw_eeg_experiment_included": false
+  },
+  "execution": {
+    "script_sha256_at_runtime": "460d6124662f7664fbd01dbe3da0c244a8b28a7f052ffbd638537f4b71a5b16b",
+    "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "numpy_version": "1.26.4",
+    "pandas_version": "2.3.3",
+    "scipy_version": "1.15.3"
+  },
+  "inputs": [
+    {
+      "repo_relative_path": "results/low_rank_residual_adapter/confirmation/subject_variant_results.csv",
+      "sha256": "e162e6ce1518a594b8e3acde8435531403a4ffaf966afc0907a629a375eafb55",
+      "size_bytes": 21478,
+      "role": "validated PhysioNet bounded-residual participant results",
+      "rows_in_file": 109,
+      "selection": "variant == 'r2_b02'",
+      "selected_rows": 109
+    },
+    {
+      "repo_relative_path": "results/hard_trust_region/confirmation/subject_variant_results.csv",
+      "sha256": "0505b7494e72e9be919f673b43488c3d2e04249579b74eb6cd5172311b26b659",
+      "size_bytes": 48989,
+      "role": "validated PhysioNet unconstrained and hard-KL participant results",
+      "rows_in_file": 218,
+      "selections": {
+        "unconstrained": "variant == 'unconstrained'",
+        "hard_kl": "variant == 'kl_tight'"
+      },
+      "selected_rows_per_method": {
+        "unconstrained": 109,
+        "hard_kl": 109
+      }
+    },
+    {
+      "repo_relative_path": "results/bci2a_frozen_external/subject_results.csv",
+      "sha256": "fa47ba5ef7fe2fae4d3b383539191d651a26e1c0b7073ed26afab1c1472c5a4d",
+      "size_bytes": 4924,
+      "role": "validated BCI-IV-2a participant results",
+      "rows_in_file": 9,
+      "selection": "all 9 participant rows",
+      "selected_rows": 9
+    }
+  ],
+  "input_validation": {
+    "physionet_ids_exactly_1_through_109": true,
+    "bci2a_ids_exactly_1_through_9": true,
+    "physionet_method_ids_pairwise_aligned": true,
+    "within_cohort_ids_unique": true,
+    "cohort_qualified_ids_unique_across_combined_data": true,
+    "physionet_future_mean_utility_recomputed_from_r10_r14": true,
+    "bci_stored_harm_flags_match_strict_threshold_recomputation": true
+  },
+  "derived_participant_file": {
+    "sha256": "546a078ce5e0587e9707cf90c5c04adcb6923d1539125dc2b4acadbe90bb791f",
+    "rows": 118
+  },
+  "endpoint": {
+    "primary_event": "participant utility strictly less than -0.01 BA (>1 percentage-point loss)",
+    "strict_inequality": "utility < -0.01",
+    "physionet_event": "R10 utility < -0.01 OR R14 utility < -0.01",
+    "physionet_mean_utility": "arithmetic mean of participant R10 and R14 BA utilities",
+    "bci_event": "AxxE utility < -0.01",
+    "bci_mean_utility": "participant AxxE BA utility",
+    "independent_unit": "participant"
+  },
+  "bootstrap": {
+    "classification": "cohort-stratified participant bootstrap",
+    "seed": 20260815,
+    "replicates": 10000000,
+    "chunk_size": 10000,
+    "rng": "numpy.random.default_rng (PCG64)",
+    "algorithm": [
+      "resample 109 PhysioNet participants with replacement within PhysioNet",
+      "resample 9 BCI-IV-2a participants with replacement within BCI-IV-2a",
+      "preserve cohort sizes 109 and 9",
+      "concatenate the two resampled cohorts and compute the 118-participant statistic"
+    ],
+    "confidence_interval": "percentile interval using numpy.quantile method='linear'",
+    "same_within-cohort_draws_used_for_all_three_statistics_each_iteration": true,
+    "stored_published_file_seed": null,
+    "stored_published_file_replicates": null,
+    "stored_metadata_note": "The stored combined JSON reports stratified intervals but does not record its seed or replicate count. This closeout is an independent, fully documented rerun."
+  },
+  "cohort_results": {
+    "physionet": {
+      "n_participants": 109,
+      "participant_ids": [
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005",
+        "S006",
+        "S007",
+        "S008",
+        "S009",
+        "S010",
+        "S011",
+        "S012",
+        "S013",
+        "S014",
+        "S015",
+        "S016",
+        "S017",
+        "S018",
+        "S019",
+        "S020",
+        "S021",
+        "S022",
+        "S023",
+        "S024",
+        "S025",
+        "S026",
+        "S027",
+        "S028",
+        "S029",
+        "S030",
+        "S031",
+        "S032",
+        "S033",
+        "S034",
+        "S035",
+        "S036",
+        "S037",
+        "S038",
+        "S039",
+        "S040",
+        "S041",
+        "S042",
+        "S043",
+        "S044",
+        "S045",
+        "S046",
+        "S047",
+        "S048",
+        "S049",
+        "S050",
+        "S051",
+        "S052",
+        "S053",
+        "S054",
+        "S055",
+        "S056",
+        "S057",
+        "S058",
+        "S059",
+        "S060",
+        "S061",
+        "S062",
+        "S063",
+        "S064",
+        "S065",
+        "S066",
+        "S067",
+        "S068",
+        "S069",
+        "S070",
+        "S071",
+        "S072",
+        "S073",
+        "S074",
+        "S075",
+        "S076",
+        "S077",
+        "S078",
+        "S079",
+        "S080",
+        "S081",
+        "S082",
+        "S083",
+        "S084",
+        "S085",
+        "S086",
+        "S087",
+        "S088",
+        "S089",
+        "S090",
+        "S091",
+        "S092",
+        "S093",
+        "S094",
+        "S095",
+        "S096",
+        "S097",
+        "S098",
+        "S099",
+        "S100",
+        "S101",
+        "S102",
+        "S103",
+        "S104",
+        "S105",
+        "S106",
+        "S107",
+        "S108",
+        "S109"
+      ],
+      "methods": {
+        "unconstrained": {
+          "harm_gt_1pp_n": 31,
+          "harm_gt_1pp_rate": 0.28440366972477066,
+          "mean_utility_ba_units": -0.001192296490461633,
+          "mean_utility_percentage_points": -0.11922964904616329
+        },
+        "hard_kl": {
+          "harm_gt_1pp_n": 25,
+          "harm_gt_1pp_rate": 0.22935779816513763,
+          "mean_utility_ba_units": -0.0004714576962283415,
+          "mean_utility_percentage_points": -0.04714576962283415
+        },
+        "residual": {
+          "harm_gt_1pp_n": 5,
+          "harm_gt_1pp_rate": 0.045871559633027525,
+          "mean_utility_ba_units": -0.0004232197466142413,
+          "mean_utility_percentage_points": -0.04232197466142413
+        }
+      }
+    },
+    "bci_iv_2a": {
+      "n_participants": 9,
+      "participant_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09"
+      ],
+      "methods": {
+        "unconstrained": {
+          "harm_gt_1pp_n": 2,
+          "harm_gt_1pp_rate": 0.2222222222222222,
+          "mean_utility_ba_units": -0.0030864197530863875,
+          "mean_utility_percentage_points": -0.30864197530863874
+        },
+        "hard_kl": {
+          "harm_gt_1pp_n": 0,
+          "harm_gt_1pp_rate": 0.0,
+          "mean_utility_ba_units": 0.00038580246913580006,
+          "mean_utility_percentage_points": 0.03858024691358001
+        },
+        "residual": {
+          "harm_gt_1pp_n": 0,
+          "harm_gt_1pp_rate": 0.0,
+          "mean_utility_ba_units": -0.0003858024691358,
+          "mean_utility_percentage_points": -0.03858024691358
+        }
+      }
+    },
+    "combined": {
+      "n_participants": 118,
+      "participant_ids": [
+        "S001",
+        "S002",
+        "S003",
+        "S004",
+        "S005",
+        "S006",
+        "S007",
+        "S008",
+        "S009",
+        "S010",
+        "S011",
+        "S012",
+        "S013",
+        "S014",
+        "S015",
+        "S016",
+        "S017",
+        "S018",
+        "S019",
+        "S020",
+        "S021",
+        "S022",
+        "S023",
+        "S024",
+        "S025",
+        "S026",
+        "S027",
+        "S028",
+        "S029",
+        "S030",
+        "S031",
+        "S032",
+        "S033",
+        "S034",
+        "S035",
+        "S036",
+        "S037",
+        "S038",
+        "S039",
+        "S040",
+        "S041",
+        "S042",
+        "S043",
+        "S044",
+        "S045",
+        "S046",
+        "S047",
+        "S048",
+        "S049",
+        "S050",
+        "S051",
+        "S052",
+        "S053",
+        "S054",
+        "S055",
+        "S056",
+        "S057",
+        "S058",
+        "S059",
+        "S060",
+        "S061",
+        "S062",
+        "S063",
+        "S064",
+        "S065",
+        "S066",
+        "S067",
+        "S068",
+        "S069",
+        "S070",
+        "S071",
+        "S072",
+        "S073",
+        "S074",
+        "S075",
+        "S076",
+        "S077",
+        "S078",
+        "S079",
+        "S080",
+        "S081",
+        "S082",
+        "S083",
+        "S084",
+        "S085",
+        "S086",
+        "S087",
+        "S088",
+        "S089",
+        "S090",
+        "S091",
+        "S092",
+        "S093",
+        "S094",
+        "S095",
+        "S096",
+        "S097",
+        "S098",
+        "S099",
+        "S100",
+        "S101",
+        "S102",
+        "S103",
+        "S104",
+        "S105",
+        "S106",
+        "S107",
+        "S108",
+        "S109",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09"
+      ],
+      "methods": {
+        "unconstrained": {
+          "harm_gt_1pp_n": 33,
+          "harm_gt_1pp_rate": 0.2796610169491525,
+          "mean_utility_ba_units": -0.0013367635189669108,
+          "mean_utility_percentage_points": -0.13367635189669108
+        },
+        "hard_kl": {
+          "harm_gt_1pp_n": 25,
+          "harm_gt_1pp_rate": 0.211864406779661,
+          "mean_utility_ba_units": -0.00040607344632768663,
+          "mean_utility_percentage_points": -0.04060734463276866
+        },
+        "residual": {
+          "harm_gt_1pp_n": 5,
+          "harm_gt_1pp_rate": 0.0423728813559322,
+          "mean_utility_ba_units": -0.00042036588646758046,
+          "mean_utility_percentage_points": -0.04203658864675804
+        }
+      }
+    }
+  },
+  "required_claim_rechecks": {
+    "harm_event_counts": {
+      "expected": {
+        "unconstrained": 33,
+        "hard_kl": 25,
+        "residual": 5
+      },
+      "recomputed": {
+        "unconstrained": 33,
+        "hard_kl": 25,
+        "residual": 5
+      },
+      "all_exactly_match": true
+    },
+    "residual_mean_utility": {
+      "ba_units": -0.00042036588646758046,
+      "percentage_points": -0.04203658864675804,
+      "approximately_minus_0_042_pp": true,
+      "stratified_bootstrap": {
+        "ci95_ba_units": [
+          -0.00225736481033091,
+          0.0013661891310196399
+        ],
+        "ci95_percentage_points": [
+          -0.225736481033091,
+          0.136618913101964
+        ],
+        "ci90_ba_units": [
+          -0.0019462940543449,
+          0.0010761366693570085
+        ],
+        "ci90_percentage_points": [
+          -0.19462940543449,
+          0.10761366693570085
+        ],
+        "monte_carlo_stability_halves_ci95_ba_units": {
+          "first_half": [
+            -0.00225736481033091,
+            0.0013661891310196399
+          ],
+          "second_half": [
+            -0.00225736481033091,
+            0.0013661891310196399
+          ]
+        }
+      }
+    },
+    "residual_vs_unconstrained_arr": {
+      "ba_fraction": 0.23728813559322032,
+      "percentage_points": 23.72881355932203,
+      "stratified_bootstrap": {
+        "ci95_ba_units": [
+          0.16101694915254236,
+          0.3220338983050847
+        ],
+        "ci95_percentage_points": [
+          16.101694915254235,
+          32.20338983050847
+        ],
+        "ci90_ba_units": [
+          0.1694915254237288,
+          0.3050847457627119
+        ],
+        "ci90_percentage_points": [
+          16.94915254237288,
+          30.508474576271187
+        ],
+        "monte_carlo_stability_halves_ci95_ba_units": {
+          "first_half": [
+            0.16101694915254236,
+            0.3220338983050847
+          ],
+          "second_half": [
+            0.16101694915254236,
+            0.3220338983050847
+          ]
+        }
+      }
+    },
+    "residual_vs_hard_kl_arr": {
+      "ba_fraction": 0.1694915254237288,
+      "percentage_points": 16.94915254237288,
+      "stratified_bootstrap": {
+        "ci95_ba_units": [
+          0.1016949152542373,
+          0.2457627118644068
+        ],
+        "ci95_percentage_points": [
+          10.16949152542373,
+          24.576271186440678
+        ],
+        "ci90_ba_units": [
+          0.11016949152542373,
+          0.2288135593220339
+        ],
+        "ci90_percentage_points": [
+          11.016949152542372,
+          22.88135593220339
+        ],
+        "monte_carlo_stability_halves_ci95_ba_units": {
+          "first_half": [
+            0.1016949152542373,
+            0.2457627118644068
+          ],
+          "second_half": [
+            0.1016949152542373,
+            0.2457627118644068
+          ]
+        }
+      }
+    }
+  },
+  "paired_mcnemar": {
+    "residual_vs_unconstrained": {
+      "paired_participants": 118,
+      "two_by_two": {
+        "neither_method_harm": 84,
+        "comparator_only_harm_residual_prevented": 29,
+        "residual_only_harm_residual_introduced": 1,
+        "both_methods_harm": 4
+      },
+      "prevented": 29,
+      "introduced": 1,
+      "discordant": 30,
+      "test": "exact two-sided McNemar, implemented as an exact binomial test on discordant pairs with p=0.5",
+      "p_exact_two_sided": 5.774199962615967e-08,
+      "is_bootstrap_statistic": false,
+      "holm_adjusted_p_across_two_planned_safety_comparisons": 1.1548399925231934e-07,
+      "holm_reject_at_alpha_0_05": true
+    },
+    "residual_vs_hard_kl": {
+      "paired_participants": 118,
+      "two_by_two": {
+        "neither_method_harm": 92,
+        "comparator_only_harm_residual_prevented": 21,
+        "residual_only_harm_residual_introduced": 1,
+        "both_methods_harm": 4
+      },
+      "prevented": 21,
+      "introduced": 1,
+      "discordant": 22,
+      "test": "exact two-sided McNemar, implemented as an exact binomial test on discordant pairs with p=0.5",
+      "p_exact_two_sided": 1.0967254638671875e-05,
+      "is_bootstrap_statistic": false,
+      "holm_adjusted_p_across_two_planned_safety_comparisons": 1.0967254638671875e-05,
+      "holm_reject_at_alpha_0_05": true
+    },
+    "pairing": "within participant after concatenating the 109 PhysioNet and 9 BCI participant rows; cohort-qualified IDs prevent cross-cohort ID collision",
+    "holm_family": "the two planned combined-analysis residual-versus-comparator safety comparisons"
+  },
+  "tost_audit": {
+    "exact_method": "ordinary unweighted participant-level combined t-TOST on the 118 concatenated residual utility values",
+    "classification": "ordinary participant-level combined TOST; not cohort-stratified; not bootstrap; not inverse-variance weighted",
+    "participant_weighting": "each participant has equal weight; cohort contribution follows sample size (109/118 and 9/118)",
+    "n": 118,
+    "degrees_of_freedom": 117,
+    "equivalence_margin_ba_units": [
+      -0.01,
+      0.01
+    ],
+    "equivalence_margin_percentage_points": [
+      -1.0,
+      1.0
+    ],
+    "sample_mean_ba_units": -0.00042036588646758046,
+    "sample_sd_ba_units": 0.01002262958994802,
+    "sample_standard_error_ba_units": 0.0009226578405102827,
+    "lower_test_H0_mean_le_minus_0_01": {
+      "alternative": "mean > -0.01",
+      "t": 10.382650743242298,
+      "p_one_sided": 1.350377111063588e-18
+    },
+    "upper_test_H0_mean_ge_plus_0_01": {
+      "alternative": "mean < +0.01",
+      "t": -11.293857190553457,
+      "p_one_sided": 9.401211497343032e-21
+    },
+    "p_tost_max": 1.350377111063588e-18,
+    "equivalent_at_alpha_0_05": true,
+    "numerically_matches_stored_combined_tost": {
+      "p_lower": true,
+      "p_upper": true
+    },
+    "implementation_evidence": {
+      "existing_source": "src/analyze_bci2a_frozen_external_validation.py",
+      "ordinary_tost_function_lines": "26-30",
+      "stored_combined_result": "results/bci2a_frozen_external/pooled_frozen_validation.json",
+      "stored_combined_tost_lines": "25-31",
+      "inference": "Applying the repository's scipy.stats.ttest_1samp TOST function to the exact 118 concatenated residual utilities reproduces both stored p-values to floating-point precision."
+    }
+  },
+  "stored_result_comparison": {
+    "stored_result_file": {
+      "repo_relative_path": "results/bci2a_frozen_external/pooled_frozen_validation.json",
+      "sha256": "1c6a93c4975bd2bd70ae8a539d95fdc6f0190fb673eb43caef9ebc602d75de70",
+      "size_bytes": 1556,
+      "role": "previously validated combined summary used only for comparison, not as a statistical input"
+    },
+    "counts_exactly_match": true,
+    "point_estimates_match_to_1e_minus_15": {
+      "residual_mean_utility": true,
+      "arr_vs_unconstrained": true,
+      "arr_vs_hard_kl": true
+    },
+    "mcnemar_exact_p_values_match_to_1e_minus_15": {
+      "vs_unconstrained": true,
+      "vs_hard_kl": true
+    },
+    "independent_bootstrap_minus_stored_ci_endpoints_ba_units": {
+      "residual_mean_utility": [
+        0.0,
+        -4.203658864675424e-06
+      ],
+      "arr_vs_unconstrained": [
+        0.0,
+        0.0
+      ],
+      "arr_vs_hard_kl": [
+        1.3877787807814457e-17,
+        2.7755575615628914e-17
+      ]
+    }
+  },
+  "generator_provenance_audit": {
+    "existing_analysis_source": {
+      "repo_relative_path": "src/analyze_bci2a_frozen_external_validation.py",
+      "sha256": "7df283279955619a09bbf20e0cd2747a5433c4579a8797d27e94cc0150c76cef",
+      "size_bytes": 14197,
+      "role": "existing BCI/frozen cross-dataset analysis source"
+    },
+    "participant_loading_function": "load_task at line 39",
+    "mcnemar_function": "mcnemar_exact at lines 19-20",
+    "holm_function": "holm at lines 21-25",
+    "tost_function": "tost_t at lines 26-30",
+    "current_source_contains_pooled_frozen_post_selection_validation_block": false,
+    "current_source_contains_combined_stratified_bootstrap_field": false,
+    "finding": "The exact historical code block that appended the 118-participant combined summary is not present in the current repository source, although its participant-loading and test primitives remain. This closeout script supplies a complete independently executable generator with recorded seed and replicate count."
+  },
+  "verdict": {
+    "counts_reproduced": true,
+    "stratified_bootstrap_implemented_as_required": true,
+    "paired_mcnemar_reproduced": true,
+    "holm_across_two_planned_tests_verified": true,
+    "tost_identified_unambiguously": true,
+    "overall": "CLOSED"
+  }
+}

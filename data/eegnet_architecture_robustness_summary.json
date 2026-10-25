@@ -1,0 +1,283 @@
+{
+  "protocol_version": "raw-eeg-stronger-backbone-v1-frozen-option1",
+  "created_utc": "2026-08-15T19:39:50.320351+00:00",
+  "n_subjects": 109,
+  "configuration": {
+    "protocol_version": "raw-eeg-stronger-backbone-v1-frozen-option1",
+    "selection_path": "Option 1: one a-priori canonical EEGNet recipe. R06 source validation is used only for checkpoint/early-stopping selection within each outer fold; there is no architecture, learning-rate, epoch-cap, or seed comparison.",
+    "runs": {
+      "adaptation": 6,
+      "future_evaluation": [
+        10,
+        14
+      ]
+    },
+    "preprocessing": {
+      "epoch_s": [
+        0.5,
+        3.5
+      ],
+      "bandpass_hz": [
+        4.0,
+        40.0
+      ],
+      "butterworth_order": 4,
+      "target_sfreq_hz": 128.0,
+      "input_shape": [
+        64,
+        384
+      ],
+      "stored_unit": "microvolts",
+      "normalization": "participant/channel mean and SD over all R06 trials and samples; R06 statistics carried unchanged to R10/R14"
+    },
+    "architecture": {
+      "name": "canonical compact EEGNet-style latent-32",
+      "F1": 8,
+      "D": 2,
+      "F2": 16,
+      "temporal_kernel_samples": 64,
+      "separable_kernel_samples": 16,
+      "pool_widths": [
+        4,
+        8
+      ],
+      "dropout": 0.5,
+      "activation": "ELU",
+      "latent_dim": 32,
+      "n_classes": 2
+    },
+    "source_training": {
+      "outer_folds": 5,
+      "outer_split": "KFold(shuffle=True)",
+      "outer_seed": 20260815,
+      "inner_validation": "first split of a 5-fold subject-level KFold over outer-source participants",
+      "inner_seed_formula": "20260915 + outer_fold",
+      "model_seed_formula": "20261015 + outer_fold",
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 128,
+      "maximum_epochs": 50,
+      "early_stopping_patience": 7,
+      "early_stopping_min_delta": 0.0001,
+      "checkpoint_criterion": "lowest source-only R06 validation cross-entropy",
+      "probe": "64 validation trials, deterministically sampled 32 per class"
+    },
+    "adaptation": {
+      "classifier_policy": "frozen for every adaptive method",
+      "steps": 3,
+      "unconstrained": {
+        "trainable": "entire encoder including batch-normalization affine parameters",
+        "buffers": "batch-normalization running buffers update in train mode",
+        "optimizer": "AdamW",
+        "learning_rate": 0.00015,
+        "weight_decay": 5e-05,
+        "seed_formula": "20261115 + 1000*outer_fold + participant"
+      },
+      "hard_kl": {
+        "included": true,
+        "cap": 0.0002,
+        "backtrack_scales": [
+          1.0,
+          0.5,
+          0.25,
+          0.125,
+          0.0625,
+          0.03125,
+          0.0
+        ],
+        "optimizer": "same as unconstrained"
+      },
+      "bounded_residual": {
+        "backbone": "source encoder and classifier frozen in eval mode",
+        "rank": 2,
+        "adapter_seeds": [
+          19,
+          47,
+          83
+        ],
+        "ensemble": "arithmetic mean of class probabilities from all three branches",
+        "optimizer": "AdamW",
+        "learning_rate": 0.05,
+        "weight_decay": 0.0001,
+        "source_probe_mean_relative_displacement_bound": 0.02,
+        "projection_target_fraction": 0.999,
+        "projection_check": "after every adaptation step",
+        "learning_rate_provenance": "retained from the preceding raw-EEG stress test; chosen from source-probe displacement to make the 2% projection active, not from R10/R14 accuracy"
+      }
+    },
+    "statistics": {
+      "participant_bootstrap_replicates": 30000,
+      "bootstrap_seed": 20260815
+    }
+  },
+  "static": {
+    "mean_ba": 0.5722012887723896,
+    "participant_bootstrap_95ci": [
+      0.5509720401922237,
+      0.5939907801805737
+    ],
+    "median_ba": 0.5401785714285714,
+    "mean_r10_ba": 0.5768148390854813,
+    "mean_r14_ba": 0.5675877384592981,
+    "wilcoxon_one_sided_p_vs_0_50": 6.912082933469213e-08
+  },
+  "methods": {
+    "bounded_residual": {
+      "n_subjects": 109,
+      "mean_ba": 0.5732415902140673,
+      "median_ba": 0.5401785714285714,
+      "mean_r10_ba": 0.5776667394786661,
+      "mean_r14_ba": 0.5688164409494685,
+      "mean_utility": 0.0010403014416775884,
+      "participant_bootstrap_utility_95ci": [
+        -0.0014662516382699872,
+        0.003604193971166449
+      ],
+      "negative_transfer": {
+        "gt_0_5pp": {
+          "count": 5,
+          "rate": 0.045871559633027525
+        },
+        "gt_1pp": {
+          "count": 5,
+          "rate": 0.045871559633027525
+        },
+        "gt_2_5pp": {
+          "count": 5,
+          "rate": 0.045871559633027525
+        }
+      },
+      "mean_source_probe_latent_displacement": 0.019965070080501954,
+      "mean_source_probe_kl": 4.166721181084315e-05,
+      "mean_changed_decisions_fraction": 0.004522774826975696
+    },
+    "hard_kl": {
+      "n_subjects": 109,
+      "mean_ba": 0.571892747924858,
+      "median_ba": 0.5401785714285714,
+      "mean_r10_ba": 0.576197757390418,
+      "mean_r14_ba": 0.5675877384592981,
+      "mean_utility": -0.00030854084753167315,
+      "participant_bootstrap_utility_95ci": [
+        -0.004008300567933595,
+        0.0035632372214941016
+      ],
+      "negative_transfer": {
+        "gt_0_5pp": {
+          "count": 16,
+          "rate": 0.14678899082568808
+        },
+        "gt_1pp": {
+          "count": 16,
+          "rate": 0.14678899082568808
+        },
+        "gt_2_5pp": {
+          "count": 16,
+          "rate": 0.14678899082568808
+        }
+      },
+      "mean_source_probe_latent_displacement": 0.07896393110309172,
+      "mean_source_probe_kl": 0.00011647037554691926,
+      "mean_changed_decisions_fraction": 0.010039433446000322
+    },
+    "static": {
+      "n_subjects": 109,
+      "mean_ba": 0.5722012887723896,
+      "median_ba": 0.5401785714285714,
+      "mean_r10_ba": 0.5768148390854813,
+      "mean_r14_ba": 0.5675877384592981,
+      "mean_utility": 0.0,
+      "participant_bootstrap_utility_95ci": [
+        0.0,
+        0.0
+      ],
+      "negative_transfer": {
+        "gt_0_5pp": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "gt_1pp": {
+          "count": 0,
+          "rate": 0.0
+        },
+        "gt_2_5pp": {
+          "count": 0,
+          "rate": 0.0
+        }
+      },
+      "mean_source_probe_latent_displacement": 0.0,
+      "mean_source_probe_kl": 0.0,
+      "mean_changed_decisions_fraction": 0.0
+    },
+    "unconstrained": {
+      "n_subjects": 109,
+      "mean_ba": 0.5753194626474443,
+      "median_ba": 0.5401785714285714,
+      "mean_r10_ba": 0.5777268093781855,
+      "mean_r14_ba": 0.5729121159167031,
+      "mean_utility": 0.0031181738750546114,
+      "participant_bootstrap_utility_95ci": [
+        -0.002973733071210134,
+        0.009269877675840981
+      ],
+      "negative_transfer": {
+        "gt_0_5pp": {
+          "count": 23,
+          "rate": 0.21100917431192662
+        },
+        "gt_1pp": {
+          "count": 22,
+          "rate": 0.2018348623853211
+        },
+        "gt_2_5pp": {
+          "count": 22,
+          "rate": 0.2018348623853211
+        }
+      },
+      "mean_source_probe_latent_displacement": 0.14849675169915233,
+      "mean_source_probe_kl": 0.001570443049077024,
+      "mean_changed_decisions_fraction": 0.02479478512795751
+    }
+  },
+  "bounded_residual_vs_unconstrained": {
+    "negative_transfer_prevented": 21,
+    "negative_transfer_introduced": 4,
+    "discordant_total": 25,
+    "mcnemar_exact_two_sided_p": 0.0009105205535888672,
+    "absolute_risk_reduction": 0.1559633027522936,
+    "participant_bootstrap_absolute_risk_reduction_95ci": [
+      0.07339449541284404,
+      0.23853211009174313
+    ],
+    "bounded_minus_unconstrained_mean_utility_difference": -0.0020778724333770228,
+    "participant_bootstrap_utility_difference_95ci": [
+      -0.008297905744866758,
+      0.0040220210790738245
+    ],
+    "wilcoxon_p_bounded_vs_unconstrained_utility": 0.35820368045816897,
+    "unconstrained_mean_source_probe_latent_displacement": 0.14849675169915233,
+    "bounded_mean_source_probe_latent_displacement": 0.019965070080501954
+  },
+  "static_ci_lower_bound_above_chance": true,
+  "interpretation_status": "PASS — strong raw-backbone robustness support",
+  "old_weak_baseline_static_mean_ba_for_context_only": 0.5084862385321102,
+  "replace_old_stress_test": true,
+  "freeze_manifest_sha256": "386d744c07e8a8daf9f7f7a4b9b10dbd279dfda8c621edeedd1d4b184327b597",
+  "future_preprocessing_sha256": "490785f322a7b1721b1e7097cd469db5faec63a2fb01425672c425b9b63d24fd",
+  "subject_results_sha256": "6140184974947c88d7a089bfabe7a54a872dc5198c79603eff284cc2c0ce6151",
+  "environment": {
+    "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:44:26) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.12.0+cu130",
+    "torch_cuda_build": "13.0",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "cuda_device_count": 1,
+    "cudnn": "92000",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sklearn": "1.9.0",
+    "pandas": "3.0.3"
+  }
+}

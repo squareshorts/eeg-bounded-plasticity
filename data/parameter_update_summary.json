@@ -1,0 +1,1103 @@
+{
+  "audit": "primary log-bandpower target-adaptation parameter-update audit",
+  "generated_utc": "2026-08-15T19:21:02.004887+00:00",
+  "environment": {
+    "python_version": "3.10.11",
+    "pytorch_version": "2.2.2+cpu",
+    "cuda_available": false,
+    "cuda_version": null,
+    "gpu_names": [],
+    "torch_num_threads": 1
+  },
+  "representative_cases": [
+    {
+      "dataset": "PhysioNet_R06_to_R10_R14",
+      "target": "S011",
+      "target_numeric": 11,
+      "fold": 0,
+      "tau0": 0.48909175395965576,
+      "seed_label": 19,
+      "seed_encoder": 100185,
+      "seed_residual": 200137,
+      "feature_path": "data/physionet_R06_R10_R14_bandpower_features.npz",
+      "source_fit_seed": 7000,
+      "decoder_fit_seed": 9000,
+      "n_source_trials": 1478,
+      "n_adapt_trials": 15,
+      "n_eval_trials_static_smoke": 15,
+      "input_dimension": 320,
+      "n_classes": 2,
+      "source_probe_trials": 177,
+      "prototype_shape": [
+        2,
+        32
+      ],
+      "shared_source_model_input_max_abs_delta_after_all_methods": 0.0,
+      "shared_decoder_input_max_abs_delta_after_all_methods": 0.0,
+      "prototype_input_max_abs_delta_after_all_methods": 0.0,
+      "methods": {
+        "static": {
+          "optimizer_parameter_count": 0,
+          "trajectory_steps": 0
+        },
+        "unconstrained_full_encoder": {
+          "optimizer_parameter_count": 22816,
+          "optimizer_count": 1,
+          "trajectory_steps": 15,
+          "diagnostics": {
+            "trust_eps_kl": null,
+            "trust_eps_repr": null,
+            "source_probe_kl_final": 0.00047062404337339103,
+            "source_probe_repr_rel_final": 0.06590240448713303,
+            "source_probe_kl_max_seen": 0.00047062404337339103,
+            "source_probe_repr_rel_max_seen": 0.06590240448713303,
+            "mean_step_scale": 1.0,
+            "fraction_full_steps": 1.0,
+            "fraction_zero_steps": 0.0,
+            "fraction_backtracked_steps": 0.0,
+            "n_bound_hits": 0
+          },
+          "reference_all_requires_grad_false": true,
+          "decoder_all_requires_grad_false": true
+        },
+        "hard_kl_full_encoder": {
+          "optimizer_parameter_count": 22816,
+          "optimizer_count": 1,
+          "trajectory_steps": 15,
+          "diagnostics": {
+            "trust_eps_kl": 0.0002,
+            "trust_eps_repr": null,
+            "source_probe_kl_final": 0.000199868343770504,
+            "source_probe_repr_rel_final": 0.040436021983623505,
+            "source_probe_kl_max_seen": 0.000199922316824086,
+            "source_probe_repr_rel_max_seen": 0.040436021983623505,
+            "mean_step_scale": 0.48125,
+            "fraction_full_steps": 0.3333333333333333,
+            "fraction_zero_steps": 0.2,
+            "fraction_backtracked_steps": 0.4666666666666667,
+            "n_bound_hits": 10
+          },
+          "reference_all_requires_grad_false": true,
+          "decoder_all_requires_grad_false": true
+        },
+        "bounded_residual": {
+          "optimizer_parameter_count": 128,
+          "optimizer_count": 1,
+          "trajectory_steps": 15,
+          "diagnostics": {
+            "rank": 2,
+            "budget": 0.02,
+            "source_probe_kl_final": 3.1448780646314844e-05,
+            "source_probe_repr_rel_final": 0.019999980926513672,
+            "source_probe_repr_rel_max_final": 0.05118456110358238,
+            "mean_step_scale": 0.9211422757154052,
+            "fraction_zero_steps": 0.0,
+            "fraction_backtracked_steps": 0.5333333333333333,
+            "n_bound_hits": 8,
+            "adapter_param_count": 128
+          },
+          "backbone_all_requires_grad_false": true,
+          "decoder_all_requires_grad_false": true
+        }
+      }
+    },
+    {
+      "dataset": "BCI_IV_2a_AxxT_to_AxxE",
+      "target": "A01",
+      "target_numeric": 1,
+      "fold": 0,
+      "tau0": 0.5019488334655762,
+      "seed_label": 19,
+      "seed_encoder": 100079,
+      "seed_residual": 200031,
+      "feature_path": [
+        "data/bci2a_train_bandpower_features.npz",
+        "data/bci2a_eval_bandpower_features.npz"
+      ],
+      "source_checkpoint": "results/bci2a_frozen_external/source_cache/A01_source.pt",
+      "source_fit_seed": 701,
+      "decoder_fit_seed": 5001,
+      "n_source_trials": 2304,
+      "n_adapt_trials": 288,
+      "n_eval_trials_static_smoke": 288,
+      "input_dimension": 110,
+      "n_classes": 4,
+      "source_probe_trials": 276,
+      "prototype_shape": [
+        4,
+        32
+      ],
+      "shared_source_model_input_max_abs_delta_after_all_methods": 0.0,
+      "shared_decoder_input_max_abs_delta_after_all_methods": 0.0,
+      "prototype_input_max_abs_delta_after_all_methods": 0.0,
+      "methods": {
+        "static": {
+          "optimizer_parameter_count": 0,
+          "trajectory_steps": 0
+        },
+        "unconstrained_full_encoder": {
+          "optimizer_parameter_count": 9376,
+          "optimizer_count": 1,
+          "trajectory_steps": 288,
+          "diagnostics": {
+            "trust_eps_kl": null,
+            "trust_eps_repr": null,
+            "source_probe_kl_final": 0.008654923178255558,
+            "source_probe_repr_rel_final": 0.24902081489562988,
+            "source_probe_kl_max_seen": 0.008803119882941246,
+            "source_probe_repr_rel_max_seen": 0.24902081489562988,
+            "mean_step_scale": 1.0,
+            "fraction_full_steps": 1.0,
+            "fraction_zero_steps": 0.0,
+            "fraction_backtracked_steps": 0.0,
+            "n_bound_hits": 0
+          },
+          "reference_all_requires_grad_false": true,
+          "decoder_all_requires_grad_false": true
+        },
+        "hard_kl_full_encoder": {
+          "optimizer_parameter_count": 9376,
+          "optimizer_count": 1,
+          "trajectory_steps": 288,
+          "diagnostics": {
+            "trust_eps_kl": 0.0002,
+            "trust_eps_repr": null,
+            "source_probe_kl_final": 0.00019998788775410503,
+            "source_probe_repr_rel_final": 0.027222130447626114,
+            "source_probe_kl_max_seen": 0.00019999615324195474,
+            "source_probe_repr_rel_max_seen": 0.027222130447626114,
+            "mean_step_scale": 0.04188368055555555,
+            "fraction_full_steps": 0.024305555555555556,
+            "fraction_zero_steps": 0.8819444444444444,
+            "fraction_backtracked_steps": 0.09375,
+            "n_bound_hits": 281
+          },
+          "reference_all_requires_grad_false": true,
+          "decoder_all_requires_grad_false": true
+        },
+        "bounded_residual": {
+          "optimizer_parameter_count": 128,
+          "optimizer_count": 1,
+          "trajectory_steps": 288,
+          "diagnostics": {
+            "rank": 2,
+            "budget": 0.02,
+            "source_probe_kl_final": 2.8782369554392062e-05,
+            "source_probe_repr_rel_final": 0.014925203286111355,
+            "source_probe_repr_rel_max_final": 0.123076431453228,
+            "mean_step_scale": 0.9688786111093124,
+            "fraction_zero_steps": 0.0,
+            "fraction_backtracked_steps": 0.3819444444444444,
+            "n_bound_hits": 110,
+            "adapter_param_count": 128
+          },
+          "backbone_all_requires_grad_false": true,
+          "decoder_all_requires_grad_false": true
+        }
+      }
+    }
+  ],
+  "audit_scope_note": "One full deterministic seed-19 branch was executed per adaptive method and dataset. The production result averages seeds 19/47/83, but optimizer membership and module freeze topology are identical for every branch. Full target adaptation sequences were used.",
+  "module_summary": {
+    "BCI_IV_2a_AxxT_to_AxxE": {
+      "static": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 132,
+          "trainable_requires_grad_parameter_count": 132,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 9376,
+          "trainable_requires_grad_parameter_count": 9376,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 128,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 9262,
+          "trainable_requires_grad_parameter_count": 9262,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "residual_V_down": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 192,
+          "trainable_requires_grad_parameter_count": 192,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "max_abs_delta": 0.0
+        }
+      },
+      "unconstrained_full_encoder": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 132,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 9376,
+          "trainable_requires_grad_parameter_count": 9376,
+          "optimizer_parameter_count": 9376,
+          "changed_parameter_count": 9376,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.011316029354929924,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "frozen_reference_classifier": {
+          "present": true,
+          "total_parameter_count": 132,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "frozen_reference_encoder": {
+          "present": true,
+          "total_parameter_count": 9376,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 128,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 9262,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "residual_V_down": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 384,
+          "trainable_requires_grad_parameter_count": 192,
+          "optimizer_parameter_count": 192,
+          "changed_parameter_count": 192,
+          "max_abs_delta": 0.008220532909035683
+        }
+      },
+      "hard_kl_full_encoder": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 132,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 9376,
+          "trainable_requires_grad_parameter_count": 9376,
+          "optimizer_parameter_count": 9376,
+          "changed_parameter_count": 9376,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.0009720213711261749,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "frozen_reference_classifier": {
+          "present": true,
+          "total_parameter_count": 132,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "frozen_reference_encoder": {
+          "present": true,
+          "total_parameter_count": 9376,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 128,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 9262,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "residual_V_down": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 384,
+          "trainable_requires_grad_parameter_count": 192,
+          "optimizer_parameter_count": 192,
+          "changed_parameter_count": 192,
+          "max_abs_delta": 0.0008003711700439453
+        }
+      },
+      "bounded_residual": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 132,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 9376,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 128,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 9262,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": true,
+          "total_parameter_count": 64,
+          "trainable_requires_grad_parameter_count": 64,
+          "optimizer_parameter_count": 64,
+          "changed_parameter_count": 64,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.2577500641345978,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "residual_V_down": {
+          "present": true,
+          "total_parameter_count": 64,
+          "trainable_requires_grad_parameter_count": 64,
+          "optimizer_parameter_count": 64,
+          "changed_parameter_count": 64,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.6652128100395203,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 192,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "max_abs_delta": 0.0
+        }
+      }
+    },
+    "PhysioNet_R06_to_R10_R14": {
+      "static": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 66,
+          "trainable_requires_grad_parameter_count": 66,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 22816,
+          "trainable_requires_grad_parameter_count": 22816,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 64,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 22912,
+          "trainable_requires_grad_parameter_count": 22912,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "residual_V_down": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 192,
+          "trainable_requires_grad_parameter_count": 192,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "max_abs_delta": 0.0
+        }
+      },
+      "unconstrained_full_encoder": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 66,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 22816,
+          "trainable_requires_grad_parameter_count": 22816,
+          "optimizer_parameter_count": 22816,
+          "changed_parameter_count": 22816,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.001803060993552208,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "frozen_reference_classifier": {
+          "present": true,
+          "total_parameter_count": 66,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "frozen_reference_encoder": {
+          "present": true,
+          "total_parameter_count": 22816,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 64,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 22912,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "residual_V_down": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 384,
+          "trainable_requires_grad_parameter_count": 192,
+          "optimizer_parameter_count": 192,
+          "changed_parameter_count": 192,
+          "max_abs_delta": 0.0013246536254882812
+        }
+      },
+      "hard_kl_full_encoder": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 66,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 22816,
+          "trainable_requires_grad_parameter_count": 22816,
+          "optimizer_parameter_count": 22816,
+          "changed_parameter_count": 22816,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.000988062471151352,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "frozen_reference_classifier": {
+          "present": true,
+          "total_parameter_count": 66,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "frozen_reference_encoder": {
+          "present": true,
+          "total_parameter_count": 22816,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 64,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 22912,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "residual_V_down": {
+          "present": false,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "ABSENT"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 384,
+          "trainable_requires_grad_parameter_count": 192,
+          "optimizer_parameter_count": 192,
+          "changed_parameter_count": 192,
+          "max_abs_delta": 0.0007938714697957039
+        }
+      },
+      "bounded_residual": {
+        "classifier": {
+          "present": true,
+          "total_parameter_count": 66,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "encoder": {
+          "present": true,
+          "total_parameter_count": 22816,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "prototypes": {
+          "present": true,
+          "total_parameter_count": 0,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 64,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "reconstruction_decoder": {
+          "present": true,
+          "total_parameter_count": 22912,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "state_value_count": 0,
+          "any_requires_grad": false,
+          "any_in_optimizer": false,
+          "any_changed": false,
+          "max_abs_delta": 0.0,
+          "status_words": "FROZEN IN EFFECT; NOT IN OPTIMIZER; NOT CHANGED"
+        },
+        "residual_U_up": {
+          "present": true,
+          "total_parameter_count": 64,
+          "trainable_requires_grad_parameter_count": 64,
+          "optimizer_parameter_count": 64,
+          "changed_parameter_count": 64,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.08797934651374817,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "residual_V_down": {
+          "present": true,
+          "total_parameter_count": 64,
+          "trainable_requires_grad_parameter_count": 64,
+          "optimizer_parameter_count": 64,
+          "changed_parameter_count": 64,
+          "state_value_count": 0,
+          "any_requires_grad": true,
+          "any_in_optimizer": true,
+          "any_changed": true,
+          "max_abs_delta": 0.15201245248317719,
+          "status_words": "TRAINABLE; IN OPTIMIZER; CHANGED"
+        },
+        "normalization_affine_parameters": {
+          "total_parameter_count": 192,
+          "trainable_requires_grad_parameter_count": 0,
+          "optimizer_parameter_count": 0,
+          "changed_parameter_count": 0,
+          "max_abs_delta": 0.0
+        }
+      }
+    }
+  },
+  "compact_factual_table": {
+    "static": {
+      "encoder": "FROZEN IN EFFECT: requires_grad flags remain True, but no target optimizer and NOT CHANGED",
+      "classifier": "FROZEN IN EFFECT: requires_grad flags remain True, but no target optimizer and NOT CHANGED",
+      "reconstruction_decoder": "not used by static inference; no target optimizer; NOT CHANGED",
+      "residual": "ABSENT",
+      "what_actually_changes": "nothing"
+    },
+    "unconstrained_full_encoder": {
+      "encoder": "TRAINABLE; IN OPTIMIZER; CHANGED (including LayerNorm affine parameters)",
+      "classifier": "explicitly FROZEN; NOT IN OPTIMIZER; NOT CHANGED",
+      "reconstruction_decoder": "explicitly FROZEN; NOT IN OPTIMIZER; NOT CHANGED",
+      "residual": "ABSENT",
+      "what_actually_changes": "only the target-specific encoder copy"
+    },
+    "hard_kl_full_encoder": {
+      "encoder": "TRAINABLE; IN OPTIMIZER; CHANGED after per-step KL backtracking/projection",
+      "classifier": "explicitly FROZEN; NOT IN OPTIMIZER; NOT CHANGED",
+      "reconstruction_decoder": "explicitly FROZEN; NOT IN OPTIMIZER; NOT CHANGED",
+      "residual": "ABSENT",
+      "what_actually_changes": "only the target-specific encoder copy; accepted update may be scaled"
+    },
+    "bounded_residual": {
+      "encoder": "explicitly FROZEN; NOT IN OPTIMIZER; NOT CHANGED",
+      "classifier": "explicitly FROZEN; NOT IN OPTIMIZER; NOT CHANGED",
+      "reconstruction_decoder": "explicitly FROZEN; NOT IN OPTIMIZER; NOT CHANGED",
+      "residual": "U and V are TRAINABLE; IN OPTIMIZER; CHANGED; U is projected for the 2% bound",
+      "what_actually_changes": "only residual V/down and U/up (128 parameters per branch)"
+    }
+  },
+  "other_state": {
+    "prototypes": "immutable normalized source-latent class means; non-parameter; not in optimizer; unchanged",
+    "homeostatic_tau_and_reward_ema": "mutable algorithmic scalars updated chronologically, but not nn.Parameters, modules, or optimizer members",
+    "dropout": "has no parameters; train/eval mode changes do not create target-adapted tensors"
+  },
+  "physionet_bci_implementation_difference": "No target-adaptation freeze/optimizer difference: BCI-IV-2a imports and calls the same candidate_adapt_trust_region and adapt_residual functions. Dimensions differ: PhysioNet uses 320 inputs/2 classes; BCI-IV-2a uses 110 inputs/4 classes, so encoder, classifier, and reconstruction-decoder counts differ. Both have 32-D latent space and a 128-parameter rank-2 residual branch.",
+  "source_code_evidence": [
+    {
+      "path": "src/run_hard_trust_region_experiment.py",
+      "function": "candidate_adapt_trust_region",
+      "lines": "106-115",
+      "fact": "deep-copies base/reference/decoder, freezes head/reference/decoder, and constructs AdamW from m.encoder.parameters() only"
+    },
+    {
+      "path": "src/run_hard_trust_region_experiment.py",
+      "function": "candidate_adapt_trust_region",
+      "lines": "167-188",
+      "fact": "optimizer step applies to encoder and hard-KL backtracking interpolates/restores encoder state only"
+    },
+    {
+      "path": "src/run_low_rank_residual_adapter.py",
+      "class_or_function": "ResidualAdapter.__init__ / adapter_params / adapt_residual",
+      "lines": "57-67, 83-84, 114-120, 158-171",
+      "fact": "freezes copied base; optimizer contains down(V) and up(U) only; projection rescales U/up only"
+    },
+    {
+      "path": "src/build_physionet_utility_episodes.py",
+      "class_or_function": "Model / Decoder / fit_decoder",
+      "lines": "47-67, 101-116",
+      "fact": "defines source encoder/head and pretrains the masked-reconstruction decoder before target adaptation"
+    },
+    {
+      "path": "src/run_bci2a_frozen_external_validation.py",
+      "function": "main",
+      "lines": "11-20, 49-66",
+      "fact": "imports the same two adaptation functions and invokes them with the frozen strength, KL cap, rank, budget, and seeds"
+    },
+    {
+      "path": "src/run_bci2a_static_consistency.py",
+      "class_or_function": "Model",
+      "lines": "14-18",
+      "fact": "BCI source model has the same 32-D encoder topology but a four-class head"
+    }
+  ],
+  "implementation_manuscript_discrepancies": [
+    {
+      "severity": "material ambiguity requiring correction",
+      "location": "intended main attachment pasted-text.txt:98 (also manuscript/main_bspc.tex:98)",
+      "current_wording": "The classifier head remained aligned to the evolving representation through the original adaptation pipeline.",
+      "code_derived_fact": "For both unconstrained and hard-KL comparators, the classifier head is explicitly requires_grad=False, excluded from AdamW, and numerically unchanged. Only the copied encoder (including LayerNorm affine tensors) is optimized.",
+      "assessment": "The wording is not an accurate unambiguous parameter specification and could imply classifier co-adaptation. It should be replaced with the code-derived fact."
+    },
+    {
+      "severity": "omission requiring clarification",
+      "location": "intended supplement attachment pasted-text.txt:434-450 and 545-550",
+      "current_wording": "Generic adaptation optimizer and hard-KL descriptions do not enumerate comparator module freeze states.",
+      "code_derived_fact": "The reconstruction decoder is pretrained source-side, then deep-copied, explicitly frozen, excluded from the target optimizer, and unchanged; it still transmits gradients through its input to the encoder or residual. Prototypes are immutable non-parameter state.",
+      "assessment": "The supplement should state these facts explicitly for both full-encoder comparators."
+    }
+  ],
+  "replacement_facts": {
+    "static": "Static inference performs no target optimization; source encoder and classifier are numerically unchanged. Their construction-time requires_grad flags remain True, but no target optimizer exists. The reconstruction decoder is not used.",
+    "unconstrained": "A target-specific copy of the entire encoder, including both LayerNorm affine layers, is the sole AdamW parameter group and changes numerically. The classifier head, frozen source reference, and masked-reconstruction decoder are excluded from the optimizer and unchanged.",
+    "hard_kl": "The parameter set is identical to unconstrained adaptation: only the copied encoder is in AdamW. Each tentative encoder step is backtracked against the source-probe KL cap; the classifier, source reference, and reconstruction decoder remain frozen and unchanged.",
+    "bounded_residual": "The source encoder, classifier, and reconstruction decoder are explicitly frozen and unchanged. Only V/down (64 values) and U/up (64 values) are in AdamW and change; U/up is multiplicatively projected when required to enforce the 2% mean source-probe displacement bound."
+  }
+}

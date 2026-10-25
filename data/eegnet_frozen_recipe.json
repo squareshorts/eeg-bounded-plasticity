@@ -1,0 +1,181 @@
+{
+  "status": "FROZEN_BEFORE_R10_R14_ACCESS",
+  "frozen_at_utc": "2026-08-15T19:38:02.178925+00:00",
+  "protocol_version": "raw-eeg-stronger-backbone-v1-frozen-option1",
+  "explicit_declarations": [
+    "The architecture and training recipe were fixed a priori; no recipe search was run.",
+    "Only R06 from source participants was used for fitting and checkpoint validation.",
+    "Every outer target participant was excluded from that fold's source training and validation.",
+    "No R10/R14 array was read by the training command.",
+    "No evaluation performance was used to select an architecture, learning rate, epoch, or seed.",
+    "Residual rank=2, bound=2%, and seeds=19/47/83 are frozen."
+  ],
+  "future_evaluation_accessed": false,
+  "future_preprocessed_npz_existed_at_freeze": false,
+  "configuration": {
+    "protocol_version": "raw-eeg-stronger-backbone-v1-frozen-option1",
+    "selection_path": "Option 1: one a-priori canonical EEGNet recipe. R06 source validation is used only for checkpoint/early-stopping selection within each outer fold; there is no architecture, learning-rate, epoch-cap, or seed comparison.",
+    "runs": {
+      "adaptation": 6,
+      "future_evaluation": [
+        10,
+        14
+      ]
+    },
+    "preprocessing": {
+      "epoch_s": [
+        0.5,
+        3.5
+      ],
+      "bandpass_hz": [
+        4.0,
+        40.0
+      ],
+      "butterworth_order": 4,
+      "target_sfreq_hz": 128.0,
+      "input_shape": [
+        64,
+        384
+      ],
+      "stored_unit": "microvolts",
+      "normalization": "participant/channel mean and SD over all R06 trials and samples; R06 statistics carried unchanged to R10/R14"
+    },
+    "architecture": {
+      "name": "canonical compact EEGNet-style latent-32",
+      "F1": 8,
+      "D": 2,
+      "F2": 16,
+      "temporal_kernel_samples": 64,
+      "separable_kernel_samples": 16,
+      "pool_widths": [
+        4,
+        8
+      ],
+      "dropout": 0.5,
+      "activation": "ELU",
+      "latent_dim": 32,
+      "n_classes": 2
+    },
+    "source_training": {
+      "outer_folds": 5,
+      "outer_split": "KFold(shuffle=True)",
+      "outer_seed": 20260815,
+      "inner_validation": "first split of a 5-fold subject-level KFold over outer-source participants",
+      "inner_seed_formula": "20260915 + outer_fold",
+      "model_seed_formula": "20261015 + outer_fold",
+      "optimizer": "AdamW",
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "batch_size": 128,
+      "maximum_epochs": 50,
+      "early_stopping_patience": 7,
+      "early_stopping_min_delta": 0.0001,
+      "checkpoint_criterion": "lowest source-only R06 validation cross-entropy",
+      "probe": "64 validation trials, deterministically sampled 32 per class"
+    },
+    "adaptation": {
+      "classifier_policy": "frozen for every adaptive method",
+      "steps": 3,
+      "unconstrained": {
+        "trainable": "entire encoder including batch-normalization affine parameters",
+        "buffers": "batch-normalization running buffers update in train mode",
+        "optimizer": "AdamW",
+        "learning_rate": 0.00015,
+        "weight_decay": 5e-05,
+        "seed_formula": "20261115 + 1000*outer_fold + participant"
+      },
+      "hard_kl": {
+        "included": true,
+        "cap": 0.0002,
+        "backtrack_scales": [
+          1.0,
+          0.5,
+          0.25,
+          0.125,
+          0.0625,
+          0.03125,
+          0.0
+        ],
+        "optimizer": "same as unconstrained"
+      },
+      "bounded_residual": {
+        "backbone": "source encoder and classifier frozen in eval mode",
+        "rank": 2,
+        "adapter_seeds": [
+          19,
+          47,
+          83
+        ],
+        "ensemble": "arithmetic mean of class probabilities from all three branches",
+        "optimizer": "AdamW",
+        "learning_rate": 0.05,
+        "weight_decay": 0.0001,
+        "source_probe_mean_relative_displacement_bound": 0.02,
+        "projection_target_fraction": 0.999,
+        "projection_check": "after every adaptation step",
+        "learning_rate_provenance": "retained from the preceding raw-EEG stress test; chosen from source-probe displacement to make the 2% projection active, not from R10/R14 accuracy"
+      }
+    },
+    "statistics": {
+      "participant_bootstrap_replicates": 30000,
+      "bootstrap_seed": 20260815
+    }
+  },
+  "configuration_sha256": "797d03ad4a83a45e5bfe8708ea182c9400251cbf983e65897b5a47cb99e552d1",
+  "runner_sha256": "1df4d4755af191f79a045ed55e63622543fd01a2f52e0b6765a08ad2e4b7a87c",
+  "r06_npz_sha256": "1ebe9ce2ee090975545d250bac84ce9c4f9d0ba2e31709e950719298b9581fc2",
+  "r06_sidecar_sha256": "a3f93629b374df2ebe46d4b8066a907ae1aa561660cdba2a4038117c7220b4bb",
+  "fold_definition_sha256": "f44298dcf12051ebc86f446cae02506728218a8e8b3b8f157b4fc08c44e8ac39",
+  "source_validation_summary_sha256": "d4355efe11858e1bb70f1e2aa396882301372a04fd77927d0470b00b81913235",
+  "source_checkpoints": [
+    {
+      "fold": 0,
+      "sha256": "4d0ee04e42818fead1312cd688934bb387b988c2b7f321a142e9e59070b1418c",
+      "best_epoch": 1,
+      "best_source_validation_loss": 0.6935120820999146,
+      "best_source_validation_ba": 0.5
+    },
+    {
+      "fold": 1,
+      "sha256": "e474374dfdb91f664ad8250f68a1221cf1c25fd762baca590c348ff7ae9aa213",
+      "best_epoch": 50,
+      "best_source_validation_loss": 0.5619429349899292,
+      "best_source_validation_ba": 0.6962962962962963
+    },
+    {
+      "fold": 2,
+      "sha256": "0b4b6dbb327848356128b94ec62a4b05bc87dcb1f96d8c7048a1870f8f85c6fc",
+      "best_epoch": 6,
+      "best_source_validation_loss": 0.6896225810050964,
+      "best_source_validation_ba": 0.4981343283582089
+    },
+    {
+      "fold": 3,
+      "sha256": "97d721f1fdf2293f9843d441c0c2993adfe7d9bf39311d6bb96fa1017e04b0d6",
+      "best_epoch": 49,
+      "best_source_validation_loss": 0.5734413266181946,
+      "best_source_validation_ba": 0.6729048899621316
+    },
+    {
+      "fold": 4,
+      "sha256": "8f9a24e8caee9fca15d968b4d8b3ede84ed5ce354dee4624da0e72f4ac16a7da",
+      "best_epoch": 49,
+      "best_source_validation_loss": 0.5741516351699829,
+      "best_source_validation_ba": 0.6605392156862745
+    }
+  ],
+  "environment": {
+    "python": "3.13.14 | packaged by conda-forge | (main, Jun 12 2026, 09:44:26) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "torch": "2.12.0+cu130",
+    "torch_cuda_build": "13.0",
+    "cuda_available": true,
+    "cuda_device": "NVIDIA GeForce RTX 4070 Laptop GPU",
+    "cuda_device_count": 1,
+    "cudnn": "92000",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sklearn": "1.9.0",
+    "pandas": "3.0.3"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "created_utc": "2026-08-15T19:39:50.333538+00:00",
+  "protocol_version": "raw-eeg-stronger-backbone-v1-frozen-option1",
+  "freeze_verified": true,
+  "no_r10_r14_for_source_training_or_checkpointing": true,
+  "no_evaluation_selected_architecture_lr_epoch_or_seed": true,
+  "outer_target_subjects_excluded_from_source_train_and_validation": true,
+  "residual_seeds": [
+    19,
+    47,
+    83
+  ],
+  "residual_rank": 2,
+  "residual_displacement_bound": 0.02,
+  "primary_log_bandpower_outputs_read": false,
+  "primary_log_bandpower_outputs_modified": false,
+  "included_in_118_participant_combined_analysis": false,
+  "raw_eeg_role": "supplementary robustness experiment only",
+  "output_hashes": {
+    "subject_csv": "6140184974947c88d7a089bfabe7a54a872dc5198c79603eff284cc2c0ce6151",
+    "summary_json": "065eb6bbcae1b047da802d6355ba243f268d3eed41b5dcdfbdc49a6997ebc46a"
+  }
+}
